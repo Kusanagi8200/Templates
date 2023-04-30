@@ -1,0 +1,15 @@
+
+upstream myapp {
+  server 127.0.0.1:3000;
+}
+
+server {
+  listen 80;
+  server_name 34.125.73.227;
+
+  location / {
+    proxy_pass http://myapp;
+    proxy_set_header Host $host;
+    proxy_set_header X-Real-IP $remote_addr;
+  }
+}
